@@ -1,11 +1,16 @@
+console.log("SCRIPT LOADED");
 function handleOrder(evt) {
     evt.preventDefault();
+
+    console.log("BUTTON CLICKED");
 
     const name = document.getElementById("custName").value;
     const phone = document.getElementById("custPhone").value;
     const product = document.getElementById("product").value;
-    const qtyType = document.querySelector("input[name='qtyType']:checked").value;
     const qtyNum = document.getElementById("qtyNum").value;
+
+    const qty = qtyNum;
+
     const notes = document.getElementById("notes").value;
     const address = document.getElementById("address").value;
 
@@ -14,19 +19,48 @@ function handleOrder(evt) {
  
     const subject = encodeURIComponent("New Order from " + name + " (" + phone + ")");
     const body = encodeURIComponent(
-        "Name: " + name + "\n" +
-        "Phone: " + phone + "\n" +
-        "Product: " + product + "\n" +
-        "Quantity: " + qty + "\n" +
-        "Notes: " + notes + "\n" +
-        "Delivery Address: " + address + "\n\n" +
-        "Shop Address: " + shopAddress + "\n" +
-        "Shop Mobile: " + shopMobile
+    `📦 New Order
+
+    Name: ${name}
+    Phone: ${phone}
+    Product: ${product}
+    Quantity: ${qty}
+    Notes: ${notes}
+    Delivery Address: ${address}
+
+    Shop Address: ${shopAddress}
+    Shop Mobile: ${shopMobile}`
     );
 
 window.open("https://wa.me/9779855036845?text=" + body, "_blank");
 
 window.open("mailto:sntraxaul1980@gmail.com?subject=" + subject + "&body=" + body);
+
+console.log("FETCH STARTING");
+fetch("http://localhost:5000/order", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+        name,
+        phone,
+        product,
+        quantity: qty,
+        notes,
+        address
+    })
+})
+.then(res => {
+    console.log("RESPONSE RECEIVED", res.status);
+    return res.json();
+})
+.then(data => {
+    console.log("SUCCESS", data);
+})
+.catch(err => {
+    console.error("FETCH ERROR", err);
+});
 
 alert("Order prepared! Your email app should open now ");
 }
