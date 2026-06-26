@@ -175,11 +175,12 @@ async function deleteOrder(id) {
         return;
     }
 
-    const res = await fetch(`https://shree-niwash-trading-production.up.railway.app/orders/${id}`
-        {
-            method: "DELETE"
-        }
-    );
+   const res = await fetch(
+    `https://shree-niwash-trading-production.up.railway.app/orders/${id}`,
+    {
+        method: "DELETE"
+    }
+);
 
     const data = await res.json();
 
@@ -191,17 +192,18 @@ async function deleteOrder(id) {
 
 async function updateStatus(id, status) {
 
-    const res = await fetch(`https://shree-niwash-trading-production.up.railway.app/orders/${id}/status`
-        {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                status: status
-            })
-        }
-    );
+const res = await fetch(
+    `https://shree-niwash-trading-production.up.railway.app/orders/${id}/status`,
+    {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            status: status
+        })
+    }
+);
 
     const data = await res.json();
 
