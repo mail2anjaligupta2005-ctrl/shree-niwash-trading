@@ -37,7 +37,7 @@ window.open("https://wa.me/9779855036845?text=" + body, "_blank");
 window.open("mailto:sntraxaul1980@gmail.com?subject=" + subject + "&body=" + body);
 
 console.log("FETCH STARTING");
-fetch("http://localhost:5000/order", {
+fetch("https://shree-niwash-trading-production.up.railway.app/order", {
     method: "POST",
     headers: {
         "Content-Type": "application/json"
