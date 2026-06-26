@@ -34,7 +34,6 @@ function handleOrder(evt) {
 
 window.open("https://wa.me/9779855036845?text=" + body, "_blank");
 
-window.open("mailto:sntraxaul1980@gmail.com?subject=" + subject + "&body=" + body);
 
 console.log("FETCH STARTING");
 fetch("https://shree-niwash-trading-production.up.railway.app/order", {
