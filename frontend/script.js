@@ -61,7 +61,7 @@ fetch("https://shree-niwash-trading-production.up.railway.app/order", {
     console.error("FETCH ERROR", err);
 });
 
-alert("Order prepared! Your email app should open now ");
+alert("✅ Order placed successfully! We will contact you soon.");
 }
 
 const languageSelect =
