@@ -80,7 +80,7 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
 
 async function loadOrders() {
 
-    const res = await fetch("http://localhost:5000/orders");
+    const res = await fetch("https://shree-niwash-trading-production.up.railway.app");
 
     const orders = await res.json();
 
