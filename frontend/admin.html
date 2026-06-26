@@ -80,7 +80,7 @@ if (localStorage.getItem("adminLoggedIn") !== "true") {
 
 async function loadOrders() {
 
-    const res = await fetch("https://shree-niwash-trading-production.up.railway.app");
+    const res = await fetch("https://shree-niwash-trading-production.up.railway.app/orders");
 
     const orders = await res.json();
 
@@ -175,8 +175,7 @@ async function deleteOrder(id) {
         return;
     }
 
-    const res = await fetch(
-        `http://localhost:5000/orders/${id}`,
+    const res = await fetch(`https://shree-niwash-trading-production.up.railway.app/orders/${id}`
         {
             method: "DELETE"
         }
@@ -192,8 +191,7 @@ async function deleteOrder(id) {
 
 async function updateStatus(id, status) {
 
-    const res = await fetch(
-        `http://localhost:5000/orders/${id}/status`,
+    const res = await fetch(`https://shree-niwash-trading-production.up.railway.app/orders/${id}/status`
         {
             method: "PUT",
             headers: {
