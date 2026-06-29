@@ -95,8 +95,15 @@ async function loadOrders() {
         <tr>
             <td>${order.name}</td>
             <td>${order.phone}</td>
-            <td>${order.product}</td>
-            <td>${order.quantity}</td>
+            <td colspan="2">
+${order.items
+    ? order.items.map(
+        (item, index) =>
+        `${index + 1}. ${item.product} - ${item.quantity}`
+      ).join("<br>")
+    : `${order.product} - ${order.quantity}`
+}
+</td>
             <td>${order.address}</td>
 
 <td>

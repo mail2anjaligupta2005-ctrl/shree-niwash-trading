@@ -112,22 +112,38 @@
                     <label id="phone-label" for="custPhone">Mobile Number</label>
                     <input id="custPhone" name="custPhone" type="tel" required>
 
-                    <label id="product-label" for="product">Product</label>
-                    <select id="product" name="product">
-                        <option>Haldi Powder / Khada Haldi</option>
-                        <option>Jeera</option>
-                        <option>Red Chili Powder / Khada Marcha</option>
-                        <option>Meethi</option>
-                        <option>Khada Dhaniya</option>
-                        <option>Makhana</option>
-                    </select>
+                    <div id="productsContainer">
 
-                    <label id="quantity-label" for="qtyNum">Quantity</label>
-                    <input
-                        id="qtyNum"
-                        name="qtyNum"
-                        type="text"
-                        required>
+    <div class="product-row">
+
+        <label>Product</label>
+        <select class="product">
+            <option>Haldi Powder / Khada Haldi</option>
+            <option>Jeera</option>
+            <option>Red Chili Powder / Khada Marcha</option>
+            <option>Meethi</option>
+            <option>Khada Dhaniya</option>
+            <option>Makhana</option>
+        </select>
+
+        <label>Quantity</label>
+        <input
+            class="quantity"
+            type="text"
+            required
+        >
+
+    </div>
+
+</div>
+
+<button
+    type="button"
+    onclick="addProductRow()"
+    style="margin-top:10px;"
+>
+    + Add Another Product
+</button>
 
                     <label id="notes-label" for="notes">Notes</label>
                     <textarea id="notes" name="notes" rows="3"></textarea>

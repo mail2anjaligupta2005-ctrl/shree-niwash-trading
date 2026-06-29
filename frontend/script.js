@@ -1,3 +1,47 @@
+function addProductRow() {
+    const rows =
+document.querySelectorAll(".product-row");
+
+if (rows.length >= 5) {
+    alert("You can add maximum 5 products.");
+    return;
+}
+
+    const container =
+        document.getElementById("productsContainer");
+
+    const row = document.createElement("div");
+
+    row.className = "product-row";
+
+    row.innerHTML = `
+        <label>Product</label>
+        <select class="product">
+            <option>Haldi Powder / Khada Haldi</option>
+            <option>Jeera</option>
+            <option>Red Chili Powder / Khada Marcha</option>
+            <option>Meethi</option>
+            <option>Khada Dhaniya</option>
+            <option>Makhana</option>
+        </select>
+
+        <label>Quantity</label>
+        <input
+            class="quantity"
+            type="text"
+            required
+        >
+
+        <button
+            type="button"
+            onclick="this.parentElement.remove()"
+        >
+            Remove
+        </button>
+    `;
+
+    container.appendChild(row);
+}
 console.log("SCRIPT LOADED");
 function handleOrder(evt) {
     evt.preventDefault();
@@ -6,62 +50,104 @@ function handleOrder(evt) {
 
     const name = document.getElementById("custName").value;
     const phone = document.getElementById("custPhone").value;
-    const product = document.getElementById("product").value;
-    const qtyNum = document.getElementById("qtyNum").value;
-
-    const qty = qtyNum;
-
     const notes = document.getElementById("notes").value;
     const address = document.getElementById("address").value;
 
-    const shopAddress = "Railway Road, Birgunj (Ward No: 16)";
-    const shopMobile = "+9779855036845";
- 
-    const subject = encodeURIComponent("New Order from " + name + " (" + phone + ")");
+    const items = [];
+
+    document.querySelectorAll(".product-row")
+    .forEach(row => {
+
+        const product =
+            row.querySelector(".product").value;
+
+        const quantity =
+            row.querySelector(".quantity").value;
+
+        if (quantity.trim() !== "") {
+    items.push({
+        product,
+        quantity
+    });
+}
+
+    });
+
+    const shopAddress =
+        "Railway Road, Birgunj (Ward No: 16)";
+
+    const shopMobile =
+        "+9779855036845";
+
+    const productsText =
+        items
+        .map(item =>
+            `${item.product} - ${item.quantity}`
+        )
+        .join("\n");
+
     const body = encodeURIComponent(
-    `📦 New Order
+`📦 New Order
 
-    Name: ${name}
-    Phone: ${phone}
-    Product: ${product}
-    Quantity: ${qty}
-    Notes: ${notes}
-    Delivery Address: ${address}
+Name: ${name}
+Phone: ${phone}
 
-    Shop Address: ${shopAddress}
-    Shop Mobile: ${shopMobile}`
+Products:
+${productsText}
+
+Notes: ${notes}
+Delivery Address: ${address}
+
+Shop Address: ${shopAddress}
+Shop Mobile: ${shopMobile}`
     );
 
-window.open("https://wa.me/9779855036845?text=" + body, "_blank");
+    window.open(
+        "https://wa.me/9779855036845?text=" + body,
+        "_blank"
+    );
 
+    console.log("FETCH STARTING");
 
-console.log("FETCH STARTING");
-fetch("https://shree-niwash-trading-production.up.railway.app/order", {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        name,
-        phone,
-        product,
-        quantity: qty,
-        notes,
-        address
+    fetch(
+        "https://shree-niwash-trading-production.up.railway.app/order",
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name,
+                phone,
+                items,
+                notes,
+                address
+            })
+        }
+    )
+    .then(res => {
+        console.log(
+            "RESPONSE RECEIVED",
+            res.status
+        );
+        return res.json();
     })
-})
-.then(res => {
-    console.log("RESPONSE RECEIVED", res.status);
-    return res.json();
-})
-.then(data => {
-    console.log("SUCCESS", data);
-})
-.catch(err => {
-    console.error("FETCH ERROR", err);
-});
+    .then(data => {
+        console.log(
+            "SUCCESS",
+            data
+        );
+    })
+    .catch(err => {
+        console.error(
+            "FETCH ERROR",
+            err
+        );
+    });
 
-alert("✅ Order placed successfully! We will contact you soon.");
+    alert(
+        "✅ Order placed successfully! We will contact you soon."
+    );
 }
 
 const languageSelect =
@@ -96,12 +182,6 @@ document.getElementById("name-label").innerText =
 
 document.getElementById("phone-label").innerText =
 "मोबाइल नंबर";
-
-document.getElementById("product-label").innerText =
-"सामान";
-
-document.getElementById("quantity-label").innerText =
-"मात्रा";
 
 document.getElementById("notes-label").innerText =
 "जरूरी जानकारी";
@@ -152,12 +232,6 @@ document.getElementById("contact-title").innerText =
 
         document.getElementById("phone-label").innerText =
         "Mobile Number";
-
-        document.getElementById("product-label").innerText =
-        "Product";
-
-        document.getElementById("quantity-label").innerText =
-        "Quantity";
 
         document.getElementById("notes-label").innerText =
         "Notes";
