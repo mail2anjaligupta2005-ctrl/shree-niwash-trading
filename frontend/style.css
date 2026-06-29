@@ -410,7 +410,13 @@ box-shadow:0 4px 12px rgba(0,0,0,.2);
 
   /* Contact card */
   #contact{
-    padding:0 15px;
+    padding:0 20px;
+}
+
+  #contact .card{
+    width: 100%;
+    max-width: 100%;
+    padding: 25px;
 }
 
   /* WhatsApp button */
