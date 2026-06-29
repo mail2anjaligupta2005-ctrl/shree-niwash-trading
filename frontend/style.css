@@ -379,9 +379,13 @@ box-shadow:0 4px 12px rgba(0,0,0,.2);
 
   /* Section headings */
  #products h2,
- #order h2,
- #contact h2 {
+ #order h2 {
    padding-left: 20px;
+   margin-bottom: 20px;
+}
+
+#contact h2{
+   padding-left: 15px;
    margin-bottom: 20px;
 }
 
@@ -409,14 +413,12 @@ box-shadow:0 4px 12px rgba(0,0,0,.2);
   }
 
   /* Contact card */
-  #contact{
-    padding:0 20px;
-}
 
-  #contact .card{
-    width: 100%;
-    max-width: 100%;
-    padding: 25px;
+
+ #contact .card{
+    width: auto;
+    margin: 0 15px;
+    padding: 20px;
 }
 
   /* WhatsApp button */
