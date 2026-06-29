@@ -433,4 +433,14 @@ box-shadow:0 4px 12px rgba(0,0,0,.2);
   footer{
     padding:20px;
   }
+  
+  .mobile-numbers{
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.mobile-numbers span{
+  display: inline-block;
+}
 }
