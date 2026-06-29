@@ -19,6 +19,7 @@ table{
     border-collapse:collapse;
     background:white;
     box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    table-layout:auto;
 }
 
 th{
@@ -31,6 +32,7 @@ td{
     padding:12px;
     text-align:center;
     border-bottom:1px solid #ddd;
+    vertical-align: top;
 }
 
 tr:hover{
@@ -95,7 +97,7 @@ async function loadOrders() {
         <tr>
             <td>${order.name}</td>
             <td>${order.phone}</td>
-            <td colspan="2">
+            <td colspan="2" style="text-align:left;">
 ${order.items
     ? order.items.map(
         (item, index) =>
