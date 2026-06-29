@@ -277,3 +277,35 @@ box-shadow:0 4px 12px rgba(0,0,0,.2);
     font-size:1.1rem;
 }
 
+@media (max-width: 768px) {
+    .hero h2 {
+        font-size: 3rem;
+        line-height: 1.1;
+    }
+}
+
+@media (max-width: 768px) {
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    nav a,
+    #language {
+        margin: 5px;
+    }
+}
+
+@media (max-width: 768px) {
+    #order-btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .order-form {
+        padding: 20px;
+    }
+}
